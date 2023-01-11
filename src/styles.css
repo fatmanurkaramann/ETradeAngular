@@ -1,1 +1,70 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+*{
+  margin: 0;
+  padding: 0;
+}
+.form-control:focus, .form-control-sm :focus, .form-select:focus{
+
+  box-shadow: none;
+  border-color: rgb(76, 51, 152);
+}
+.mat-dialog-title{
+  margin-bottom: 0;
+}
+.mat-dialog-closer{
+  cursor:pointer;
+  font-weight: bold;
+}
+.mat-dialog-closer:hover{
+  transform: scale(1.1);
+  transition: scale 2s ;
+}
+.mat-dialog-actions{
+  gap:.5rem
+}
+.mat-dialog-header{
+  position: sticky;
+  top:0;
+
+  display:flex;
+  flex-direction: row;
+  gap:0.5rem;
+  justify-content: space-between;
+  margin-bottom:0.5rem;
+
+}
+.product-card-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap
+}
+
+.mat-tooltip.custom-tooltip {
+  font-size: 12px;
+  background: #6f38c5;
+  color: white
+}
+.bg-edit{
+  background-color: cornflowerblue !important;
+}
+.text-edit{
+  color: cornflowerblue !important;
+
+}
+.bg-purple{
+  background-color: #6f38c5 !important;
+}
+.text-purple{
+  color:#6f38c5 !important;
+}
+.mat-dialog-container{
+  margin: 15px;
+}
+.mat-error{
+  font-size:12px !important
+}

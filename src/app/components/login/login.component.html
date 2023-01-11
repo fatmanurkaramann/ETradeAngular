@@ -1,0 +1,98 @@
+
+
+    <div class="container" style="width: 100%;">
+      <div class="hero"  >
+        <div class="form-box" >
+          <div class="button-box" >
+            <div id="btn"></div>
+            <button type="submit" class="toggle-btn" id="log">Giriş yap</button>
+            <button type="button" class="toggle-btn" id="reg">Kayıt ol</button>
+          </div>
+          <form
+            id="login"
+            class="login-input-group"
+            [formGroup]="loginForm"
+            (ngSubmit)="login()"
+          >
+            <input
+              type="text"
+              class="input-field"
+              placeholder="Email ya da Kullanıcı Adı"
+              formControlName="emailOrUsername"
+              name="login"
+              required
+              style="border-radius: 5px"
+            />
+            <input
+              type="password"
+              class="input-field"
+              placeholder="Şifre"
+              name="login"
+              formControlName="password"
+              required
+              style="border-radius: 5px"
+            />
+            <input type="checkbox" value="Remember password" class="check-box" />
+            <label for="vehicle1">Şifremi hatırla</label>
+            <button type="submit" class="submit-btn" style="border-radius: 5px">
+              Log In
+            </button>
+          </form>
+          <form id="register" [formGroup]="registerForm"  (ngSubmit)="register()"  class="login-input-group">
+            <input
+            type="text"
+            class="input-field"
+            placeholder="Ad"
+            style="border-radius: 5px"
+            formControlName = "firstName"
+            required
+            />
+            <input
+            type="text"
+            class="input-field"
+            placeholder="Soyad"
+            style="border-radius: 5px"
+            formControlName = "lastName"
+            required
+            />
+            <input
+              type="email"
+              class="input-field"
+              placeholder="Email"
+              style="border-radius: 5px"
+              formControlName = "email"
+              required
+            />
+            <input
+            type="text"
+            class="input-field"
+            placeholder="Kullanıcı Adı"
+            style="border-radius: 5px"
+            required
+            formControlName= "userName"
+            />
+            <input
+              type="password"
+              class="input-field"
+              placeholder="Şifre"
+              style="border-radius: 5px"
+              formControlName = "password"
+              required
+            />
+            <input
+              type="text"
+              class="input-field"
+              placeholder="Adres Bilgisi"
+              style="border-radius: 5px"
+              formControlName = "fullAddress"
+              required
+            />
+            <button type="submit" class="submit-btn" style="border-radius: 5px">
+              Kayıt ol
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+

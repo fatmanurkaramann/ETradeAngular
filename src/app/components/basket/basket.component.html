@@ -1,0 +1,74 @@
+<div class="card">
+  <div class="row">
+      <div class="col-md-8 cart" >
+          <div class="title">
+              <div class="d-flex flex-row flex-wrap justify-content-between">
+                  <div ><h4 class="mb-0"><b>Sepetim</b></h4></div>
+                  <div class="align-self-center text-right text-muted" *ngIf="baskets.length>0">Sepetinizde {{baskets.length}} farklı ürün var</div>
+              </div>
+          </div>
+          <div *ngIf="totalAmount==0 && baskets.length<=0 && !isPaid">
+            <p class="text-center"><b>Sepetinizde Ürün Bulunmamaktadır.</b></p>
+            <i class="fa-solid fa-cart-shopping" style="font-size: 10rem;text-align: center;margin: auto; display: block; color: rgb(76, 51, 152);"></i>
+          </div>
+          <div *ngIf="totalAmount == 0 && baskets.length<=0 && isPaid">
+            <p class="text-center"><b>Siparişiniz bizlere ulaştı. Bizi tercih ettiğiniz için teşekkür ederiz. Siparişinizi, en hızlı şekilde ulaştırmaya gayret edeceğiz.</b></p>
+            <i class="fa-solid fa-motorcycle" style="font-size: 10rem;text-align: center;margin: auto; display: block; color: rgb(76, 51, 152);"></i>
+          </div>
+          <div class="row border-top border-bottom"  *ngFor="let basketItem of baskets">
+              <div class="row main align-items-center">
+                  <div class="col-2"><img class="img-fluid" src="{{ basketItem.product.productImageUrl }}" onerror="this.src='../../assets/images/default-product-image.png';"></div>
+                  <div class="col">
+                      <div class="row text-muted">{{basketItem.product.name}}</div>
+                      <div class="row" style="font-size:11px">({{basketItem.product.categoryName}})</div>
+                  </div>
+                  <div class="col">
+                      <button (click)="decreaseProductQuantity(basketItem.product)"  class="add-delete-button" matTooltipClass="custom-tooltip" >
+                        <mat-icon>remove</mat-icon>
+                      </button>
+                      <span class="border ps-1 pe-1 ms-1 me-1">{{basketItem.quantity}}</span>
+                      <button (click)="increaseProductQuantity(basketItem.product)" class="add-delete-button" matTooltipClass="custom-tooltip">
+                        <mat-icon>add</mat-icon>
+                      </button>
+                  </div>
+                  <div class="col">{{basketItem.product.unitPrice}} ₺ x {{basketItem.quantity}}</div>
+                  <div class="col">{{basketItem.lineTotal}} ₺</div>
+                  <div class="col">
+                    <button (click)="openDeleteProductFromBasketConfirmModal(basketItem.product)" matTooltip="Sepetten kaldır" matTooltipClass="custom-tooltip" class="add-delete-button">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </div>
+              </div>
+          </div>
+          <div class="back-to-shop"><button class="btn bg-purple text-white" style="width: 170px;" routerLink="/">&leftarrow;&nbsp;&nbsp; Alışverişe Devam Et</button></div>
+      </div>
+      <div class="col-md-4 summary">
+          <div><h4><b>Sipariş Özeti</b></h4></div>
+          <hr>
+          <div class="row border-bottom border-white pb-1 pt-1" *ngFor="let basketItem of baskets">
+              <div class="col-9" style="padding-left:0;">{{basketItem.product.name}} ({{basketItem.quantity}} adet)</div>
+              <div class="col-3 text-right">{{basketItem.lineTotal}} ₺</div>
+          </div>
+          <form>
+              <select (change)="deliveryTypeChanged($event)">
+                <option class="text-muted" selected value="5">Standart Teslimat - 5 ₺</option>
+                <option class="text-muted" value="8">Hızlı Teslimat - 8 ₺</option>
+              </select>
+          </form>
+          <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding-top: 2vh;">
+              <div class="col-md-8">Sepet Tutarı:</div>
+              <div class="col-md-4 text-right">{{totalAmount}} ₺</div>
+          </div>
+          <div class="row"  *ngIf="totalAmount>0">
+            <div class="col-md-8">Teslimat Ücreti:</div>
+            <div class="col-md-4 text-right">{{shipmentCost}} ₺</div>
+          </div>
+          <div class="row" *ngIf="totalAmount>0">
+            <div class="col-md-8">Toplam Tutar:</div>
+            <div class="col-md-4 text-right">{{calculateTotal()}} ₺</div>
+          </div>
+          <button class="btn bg-purple" (click)="openPaymentDialog()" [disabled] = "baskets.length==0">Siparişi Onayla</button>
+      </div>
+  </div>
+
+</div>

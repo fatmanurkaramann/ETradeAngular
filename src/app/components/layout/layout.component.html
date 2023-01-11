@@ -1,0 +1,12 @@
+
+<app-navbar></app-navbar>
+<app-header *ngIf="router.url === '/'"></app-header>
+
+<div [class.header-margin]="router.url === '/'" [class.navbar-margin]="router.url!=='/'">
+
+<app-scroll-up></app-scroll-up>
+  <router-outlet></router-outlet>
+</div>
+
+
+<app-footer></app-footer>

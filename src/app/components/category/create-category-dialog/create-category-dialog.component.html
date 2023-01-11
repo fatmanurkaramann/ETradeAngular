@@ -1,0 +1,26 @@
+<div class="mat-dialog-header">
+  <h2 mat-dialog-title class="m-0">Kategori Ekle</h2>
+  <mat-icon class="mat-dialog-closer" [mat-dialog-close]>close</mat-icon>
+</div>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="createCategoryForm" >
+    <div class="row">
+      <div class="col-12">
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text"><b class="text-danger">*&nbsp; </b>Kategori Adı:</span>
+          <input type="text" formControlName="name" class="form-control" placeholder="Kategori adını giriniz.">
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text"><b class="text-danger">*&nbsp; </b>Kategori Açıklaması:</span>
+          <textarea type="text" formControlName ="description" class="form-control" placeholder="Kategori açıklaması giriniz."></textarea>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button  mat-button mat-dialog-close>Vazgeç</button>
+  <button mat-button color="primary" (click)="createCategory()" cdkFocusInitial>Kategori Ekle</button>
+</mat-dialog-actions>

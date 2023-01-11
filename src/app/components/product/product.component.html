@@ -1,0 +1,55 @@
+
+<main >
+    <div id="cards">
+      <div
+        class="col"
+        *ngFor="let product of products | filterProductPipe: filterText"
+        id="card"
+      >
+        <div class="card-group">
+          <div class="d-flex flex-row justify-content-end w-100">
+            <button *ngIf="authService.isSuperAdmin" mat-icon-button color="warn" (click)="openDeleteProductDialog(product)"  matTooltipClass="custom-tooltip" [matTooltip]="product.name + ' adlı ürünü sil.'">
+              <mat-icon>delete</mat-icon>
+          </button>
+          <button *ngIf="authService.isSuperAdmin" mat-icon-button  class="text-edit"  (click)="openUpdateProductDialog(product)" [matTooltip]="product.name + ' adlı ürünü güncelle.'"
+              matTooltipPosition="below" matTooltipClass="custom-tooltip">
+              <mat-icon>edit</mat-icon>
+          </button>
+          <button *ngIf="authService.isAuthenticated" [disabled]="product.stock<=0" mat-icon-button class="text-purple" [matTooltip]="product.name + ' adlı ürünü sepet ekle.'"
+          matTooltipPosition="below" matTooltipClass="custom-tooltip" (click)="addBasket(product)" >
+            <mat-icon [matTooltip]="product.stock<=0 ? product.name+' adlı ürün stokta yok.':''" matTooltipClass="custom-tooltip">add</mat-icon>
+          </button>
+          </div>
+
+
+          <img src="{{ product.productImageUrl }}" onerror="this.src='../../assets/images/default-product-image.png';"  class="card-img-top" />
+          <div class="card-body">
+            <div class="text-center" style="margin-bottom: 7px">
+              <p class="text-capitalize text-dark text-wrap w-100 " style="font-weight: bolder;">
+                {{ product.name }}
+              </p>
+              <p class="text-secondary text-capitaliz text-wrap w-100">
+                ({{product.categoryName}})
+              </p>
+              <p class="price-hp">{{ product.unitPrice }} TL</p>
+            </div>
+            <div class="form-group text-center mb-2">
+              <div class="row">
+                <div>
+                  <input
+                    min="1"
+                    [attr.max]="product.stock"
+                    type="number"
+                    id="quantity-{{ product.id }}"
+                    class="form-control"
+                    value="1"
+                    step="1"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</main>

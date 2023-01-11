@@ -1,0 +1,7 @@
+<div class="number" [innerHTML]="order?'Henüz sipariş vermediniz:(' : '404' " [ngStyle]="{'font-size': order ?'15vmin': '30vmin'}" ></div>
+<div class="text d-flex flex-column align-items-center gap-2">
+  <span *ngIf="!order">Ooops...</span>
+  <p *ngIf="!order">Sayfa bulunamadı!</p>
+  <button routerLink="/" style="width: 180px;" class="btn bg-purple text-white">Alışverişe Devam Et</button>
+</div>
+

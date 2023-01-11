@@ -1,0 +1,20 @@
+<section
+  style="overflow-x: hidden; max-width: 100%; z-index: 10"
+  class="header"
+>
+  <div class="container">
+    <div class="row height d-flex justify-content-center align-items-center">
+
+        <div class="form mt-2">
+          <i class="fa fa-search ms-2"></i>
+          <input
+            [(ngModel)]="filterText"
+            (ngModelChange)="changeFilterText()"
+            type="text"
+            class="form-control form-input"
+            placeholder="Ürün ara..."
+          />
+        </div>
+    </div>
+  </div>
+</section>

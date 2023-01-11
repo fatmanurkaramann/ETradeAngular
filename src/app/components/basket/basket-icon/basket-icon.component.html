@@ -1,0 +1,17 @@
+<button
+        type="button"
+        class="basket-button"
+        routerLink="/basket"
+
+      >
+        <span class="basket-button-icon"
+          ><i
+            class="fa-solid fa-cart-shopping"
+            style="color: rgb(76, 51, 152)"
+          ></i
+        ></span>
+        <span
+          class="basket-button-text"
+          [innerText]="totalAmount | currency: '':'':'1.2-2'"
+        ></span>
+</button>

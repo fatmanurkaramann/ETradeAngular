@@ -1,0 +1,54 @@
+<div class="mat-dialog-header">
+  <h2 mat-dialog-title class="m-0">Ürün Ekle</h2>
+  <mat-icon class="mat-dialog-closer" [mat-dialog-close]>close</mat-icon>
+</div>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="createProductForm" >
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text"><b class="text-danger">*  &nbsp;</b>Ürün Adı:</span>
+          <input type="text" formControlName="name" class="form-control" placeholder="Ürünün adını giriniz.">
+          <mat-error *ngIf="createProductForm.controls['name'].errors && createProductForm.controls['name'].touched">Ürün adı girmek zorunludur.</mat-error>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="input-group input-group-sm mb-3">
+          <label class="input-group-text"><b class="text-danger">*  &nbsp;</b>Kategori:</label>
+          <select formControlName="categoryId" class="form-select" >
+            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+          </select>
+          <mat-error *ngIf="createProductForm.controls['categoryId'].errors  && createProductForm.controls['categoryId'].touched">Ürünün kategorisi seçilmelidir.</mat-error>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text"><b class="text-danger">*&nbsp;</b>Stok Miktarı:</span>
+          <input type="number" min="0" formControlName="stock" class="form-control" placeholder="Stok bilgisi giriniz.">
+          <mat-error *ngIf="createProductForm.controls['stock'].errors  && createProductForm.controls['stock'].touched">Stok bilgisi girilmelidir. Minimum 0 olmalıdır.</mat-error>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text"><b class="text-danger">*&nbsp;</b>Birim Fiyatı:</span>
+          <input type="number" min="0" formControlName="unitPrice" class="form-control" placeholder="Birim fiyat bilgisi giriniz.">
+          <mat-error *ngIf="createProductForm.controls['unitPrice'].errors  && createProductForm.controls['unitPrice'].touched">Birim fiyat girilmelidir. Minimum 0 olmalıdır.</mat-error>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text">Ürün Resmi Link:</span>
+          <input type="text" formControlName ="productImageUrl" class="form-control" placeholder="Ürün resmi için link giriniz.">
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button  mat-button mat-dialog-close>Vazgeç</button>
+  <button mat-button color="primary"cdkFocusInitial [textContent]="data? 'Ürünü Güncelle' : 'Ürün ekle'" (click)="data != null ? updateProduct() : createProduct() "></button>
+</mat-dialog-actions>

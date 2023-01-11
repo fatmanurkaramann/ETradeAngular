@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <app-not-found [order]="true" *ngIf="orderListModel?.data?.items?.length==0"></app-not-found>
+  </div>
+  <div class="row ">
+
+    <div class="col-md-6 col-sm-12 mb-3" *ngFor="let order of orderListModel?.data.items">
+      <div class="card  h-100" >
+        <div class="card-header py-3 d-flex flex-row flex-wrap justify-content-between">
+          <span><b>Sipariş No: </b>{{order.id}}</span>
+          <span><b>Sipariş Tarihi: </b> {{order.shipmentDate | date: 'dd-MM-yyyy / hh:mm'}}</span>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Ürün</th>
+                  <th>Miktar</th>
+                  <th>Birim Fiyat</th>
+                  <th>Satır Toplamı</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let orderDetail of order.orderDetails">
+                  <td><img  src="{{ orderDetail.product.productImageUrl }}" width="50" height="30" onerror="this.src='../../assets/images/default-product-image.png';"></td>
+                  <td>{{orderDetail.product.name}}</td>
+                  <td>{{orderDetail.quantity}}</td>
+                  <td>{{orderDetail.product.unitPrice}} ₺</td>
+                  <td>{{orderDetail.lineTotal}} ₺</td>
+                </tr>
+                <tr class="border-bottom-0">
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td  >
+                    <span><b>{{order.totalAmount}} ₺</b></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+        <div class="card-footer bg-white d-flex flex-row flex-wrap justify-content-between align-items-center">
+          <span><b>Teslimat Adresi: </b>{{order.fullAddress}}</span>
+          <button mat-raised-button (click)="orderAgain(order.orderDetails)" class="bg-purple text-white">Siparişi Tekrarla</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,98 @@
+<div class="mat-dialog-header">
+  <h2 mat-dialog-title class="m-0">Ödeme Yap</h2>
+  <mat-icon class="mat-dialog-closer" [mat-dialog-close]>close</mat-icon>
+</div>
+<mat-dialog-content class="mat-typography">
+  <div class="container">
+    <div class="card-container">
+
+      <div class="front">
+        <div class="image">
+          <img src="../../../assets/images/chip.png" alt="">
+          <img src="../../../assets/images/visa.png" alt="">
+        </div>
+        <div class="card-number-box">XXXX-XXXX-XXXX-XXXX</div>
+        <div class="flexbox">
+          <div class="box">
+            <span>Kart sahibi</span>
+            <div class="card-holder-name">Ad-Soyad</div>
+          </div>
+          <div class="box">
+            <div class="expiration">
+              <span class="exp-month">AA</span>
+              /
+              <span class="exp-year">YYYY</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="back">
+        <div class="stripe"></div>
+        <div class="box">
+          <span>cvv</span>
+          <div class="cvv-box"></div>
+          <img src="../../../assets/images/visa.png" alt="">
+        </div>
+      </div>
+
+    </div>
+    <form [formGroup]="paymentForm">
+      <div class="inputBox">
+        <span>Kart Numarası</span>
+        <input type="text" formControlName="cardNumber"  maxlength="16" class="card-number-input">
+      </div>
+      <div class="inputBox">
+        <span>Kart Sahibi</span>
+        <input type="text" formControlName="cardHolder" class="card-holder-input">
+      </div>
+      <div class="flexbox">
+        <div class="inputBox">
+          <span>SKT Ay</span>
+          <select name="" id="" formControlName="expireMonth"  class="month-input">
+            <option value="month" selected disabled>Ay</option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+        </div>
+        <div class="inputBox">
+          <span>SKT Yıl</span>
+          <select formControlName="expireYear"  class="year-input">
+            <option value="year" selected disabled>Yıl</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+            <option value="2029">2029</option>
+            <option value="2030">2030</option>
+          </select>
+        </div>
+        <div class="inputBox">
+          <span>Cvv</span>
+          <input type="text" formControlName="cvv"  maxlength="4" class="cvv-input">
+        </div>
+      </div>
+    </form>
+
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="submit" (click)="createOrder()" class="submit-btn">Ödeme Yap</button>
+</mat-dialog-actions>
+
+
+

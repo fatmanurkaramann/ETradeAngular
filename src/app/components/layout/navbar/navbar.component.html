@@ -1,0 +1,51 @@
+<script type="text/javascript" src="assets/js/jquery-2.1.1.min.js"></script>
+
+<nav style="overflow-x: hidden; max-width: 100%">
+  <div class="navbar">
+    <div class="nav nav-tabs d-flex flex-wrap flex-row justify-content-between w-75" id="myTab" role="tablist"
+      style="border: none">
+      <div class="d-flex flex-row flex-wrap gap-2">
+        <a class="nav-item nav-link" [routerLinkActiveOptions]="{ exact: true }" routerLink="/"
+          routerLinkActive="active-link">Ürünler</a>
+        <a *ngIf="isAuth && authService.isSuperAdmin" class="nav-item nav-link" style="cursor:pointer"
+          (click)="openCreateProductDialog()">Ürün Ekle</a>
+        <a *ngIf="isAuth && authService.isSuperAdmin" class="nav-item nav-link" style="cursor:pointer"
+          (click)="openCreateCategoryDialog()">Kategori ekle</a>
+      </div>
+
+      <div class="d-flex flex-row flex-wrap align-items-center gap-2">
+        <app-basket-icon *ngIf="isAuth"></app-basket-icon>
+        <div class="dropdown">
+          <input type="checkbox" id="dropdown">
+
+          <label class="dropdown__face" for="dropdown">
+            <div class="dropdown__text"> <i style="padding-left:8px ;" class="fa fa-user-o" aria-hidden="true"
+                placeholder="profil" type="text" readonly><a
+                  style="font-family: 'Times New Roman', Times, serif; padding-left: 10px;color: black;border: none;text-decoration:none;"
+                  *ngIf="isAuth" (click)="closeDropdown()">Profil</a>
+                <a style="font-family: 'Times New Roman', Times, serif; padding-left: 6px;color: black;border: none;text-decoration:none;font-size: 15px;"
+                  *ngIf="!isAuth" (click)="closeDropdown()">Giriş Yap</a></i></div>
+
+            <div class="dropdown__arrow"></div>
+          </label>
+
+          <ul class="dropdown__items">
+            <a *ngIf="!isAuth" id="home1" routerLink="/login" (click)="closeDropdown()">
+              Giriş Yap
+            </a>
+            <a *ngIf="!isAuth" href="#" routerLink="/login" id="home2">Üye Ol</a>
+            <a *ngIf="isAuth">{{authService.currentUser.firstName}} {{authService.currentUser.lastName}}</a>
+            <a routerLink="/my-orders" *ngIf="isAuth" (click)="closeDropdown()">
+              Siparişlerim
+            </a>
+            <a class="logoutButton" style="border: none; border: 0; margin-left: 2px;cursor:pointer" *ngIf="isAuth"
+              (click)="logout();closeDropdown()">
+              Çıkış Yap
+            </a>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
